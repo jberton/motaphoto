@@ -1,0 +1,89 @@
+/*
+Theme Name: motaphoto
+Theme URI: https://www.motaphoto.com
+Author: jberton
+Author URI: 
+Description: Thème Motaphoto
+Version: 1.0
+*/
+
+/*GENERAL*/
+:root {
+	--rouge-color: #E00000;
+	--rouge-secondaire-color: #FE5858;
+	--rouge-tertiaire-color: #FFD6D6;
+	--bleu-fonce-color: #313144;
+	--gris-fonce-color: #C4C4C4;
+	--gris-medium-color: #D8D8D8;
+	--gris-light-color: #E5E5E5;
+  }
+
+/*  Chargement des polices Google */
+@font-face {
+	font-family: 'Space Mono';
+	src: url('./assets/fonts/SpaceMono/SpaceMono-Regular.woff2');
+  }
+
+body {
+	font-family: "Space Mono";
+}
+
+
+/* Footer */
+footer {
+	width: 1148px;
+	margin:auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap:40px;
+	font-size: 16px;
+}
+
+footer a {
+	text-decoration: none;
+	color: black;
+}
+
+.line-top-footer{
+	border-top: 1px solid black;
+	width:100%;
+	position: relative;
+}
+
+/* Header */
+header {
+	width: 1148px;
+	margin:auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+header ul {
+	display: flex;
+	flex-direction: row;
+	list-style-type:none;
+	padding: 0;
+	margin: 0;
+}
+
+header li{
+	padding-left: 20px;
+	text-decoration: none;
+  }
+
+header li a{
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
+  }
+
+/* Page Accueil - Contenu */
+.container {
+	width: 1148px;
+	margin:auto;
+}
