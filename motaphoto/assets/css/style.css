@@ -1,0 +1,431 @@
+/*
+Theme Name: motaphoto
+Theme URI: https://www.motaphoto.com
+Author: jberton
+Author URI: 
+Description: Thème Motaphoto
+Version: 1.0
+*/
+
+/*GENERAL*/
+:root {
+	--rouge-color: #E00000;
+	--rouge-secondaire-color: #FE5858;
+	--rouge-tertiaire-color: #FFD6D6;
+	--bleu-fonce-color: #313144;
+	--gris-fonce-color: #C4C4C4;
+	--gris-medium-color: #D8D8D8;
+	--gris-light-color: #E5E5E5;
+  }
+
+/*  Chargement des polices Google */
+@font-face {
+	font-family: 'Space Mono';
+	src: url('../fonts/SpaceMono/SpaceMono-Regular.woff2');
+  }
+@font-face {
+	font-family: 'Poppins';
+	src: url('../fonts/Poppins/Poppins-Regular.woff2');
+}
+
+body {
+	font-family: "Space Mono";
+	margin:0;
+	padding:0;
+}
+
+
+/* Footer */
+footer {
+	width: 1148px;
+	margin:auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap:40px;
+	font-size: 16px;
+}
+
+footer a {
+	text-decoration: none;
+	color: black;
+}
+
+.line-top-footer{
+	border-top: 1px solid black;
+	width:100%;
+	position: relative;
+}
+
+/* Header */
+header {
+	width: 1148px;
+	margin:auto;
+}
+
+header ul {
+	display: flex;
+	flex-direction: row;
+	list-style-type:none;
+	padding: 0;
+	margin: 0;
+}
+
+header li{
+	padding-left: 20px;
+	text-decoration: none;
+  }
+
+header li a{
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
+  }
+
+/* Page Accueil - Hero Header */
+.hero-header {
+	display: flex;
+	position: relative;
+	text-align: center;
+	color: white;
+	margin-bottom: 50px;
+}
+
+.hero-header img {
+	width: 100%;
+	height: 962px;
+	object-fit: cover;
+}
+
+.hero-header span img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 1000px;
+	height: 142px;
+}
+
+/* Page Accueil - Conteneur filtre + photos */
+.home-container {
+	width: 1148px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+/* Page Accueil - Zone de filtre */
+.home-filter {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+.home-filter select {
+	font-size: 12px;
+	font-family: "Poppins";
+	width: 260px;
+	border-radius: 10px;
+	border-color: var(--gris-fonce-color);
+	padding: 12px 15px;
+	-webkit-appearance: none;
+	appearance: none;
+  }
+
+  #format-select {
+	position: absolute;
+	right: 10px;
+  }
+
+  .select-wrapper-format::after {
+	right: 30px !important;
+  }
+
+/* Page Accueil - Zone de filtre - Flèche menu déroulant */
+  .select-wrapper {
+	position: relative;
+  }
+  
+  .select-wrapper::after {
+	content: url(../images/icon-fleche.png);
+	font-size: 1rem;
+	top: 6px;
+	right: 20px;
+	position: absolute;
+	pointer-events: none;
+  }
+
+/* Page Accueil - Catalogue photos */
+.home-photos ul {
+	margin:0;
+	padding: 0;
+	list-style-type: none;
+	columns: 2;
+	-webkit-columns: 2;
+	-moz-columns: 2;
+  }
+
+  .home-photos li {
+	margin: 8px 0;
+	float: left;
+  }
+
+.home-photos img {
+	width: 564px;
+	height: 495px;
+	object-fit: cover;
+}
+
+/* Formulaire de contact */
+.popup-overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#00000060;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    z-index: 999; /* à enlever */
+    top:0;
+    left:0;
+	font-family: "Poppins";
+	color:var(--bleu-fonce-color);
+	font-size: 12px;
+	visibility: hidden;
+	opacity: 0;
+	transform: scale(0);
+}
+
+.popup-overlay-visible{
+	visibility: visible !important;
+	opacity: 1;
+	transform: scale(1);
+	transition: 1s ease-in-out;
+}
+
+.popup-container{
+	background:white;
+    border:3px solid black;
+    width:591px;
+	max-height:770px;
+    position:relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.popup-header{
+	background-image: url(../images/contact-nathalie-mota-photographe.png);
+	background-repeat: repeat-x;
+	background-position: left 47% top 0%;
+	background-size: cover;
+	height:106px;
+	width:100%;
+	margin-top: 10px;
+}
+
+.wpcf7-form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.wpcf7-form label{
+	margin-top: 20px;
+}
+
+.wpcf7-form-control-wrap{
+	display: flex;
+	flex-direction: column;
+	width: 263px;
+	margin-top: 5px;
+}
+
+.wpcf7-form-control-wrap input {
+	width: 255px;
+	height: 40px;
+	border:solid 1px var(--gris-fonce-color);
+	border-radius: 10px;
+}
+
+.wpcf7-form-control-wrap textarea {
+	height: 210px;
+	border:solid 1px var(--gris-fonce-color);
+	border-radius: 10px;
+}
+
+.wpcf7-submit {
+	font-family: "Space Mono";
+	background-color: var(--gris-light-color);
+	border:solid 1px var(--gris-fonce-color);
+	margin-top: 20px;
+	height: 50px;
+	width: 255px;
+}
+
+.wpcf7-submit:hover {
+	color: white;
+	background-color: black;
+}
+
+.wpcf7-response-output{
+	margin-top: -20px !important;
+}
+
+
+
+
+/* Responsive Design - Largeur Header, Container, Footer*/
+@media screen and (max-width:1148px){
+	header {
+		width: 100%;
+	}
+	footer {
+		width: 100%;
+	}
+	.container {
+		width: 100%;
+	}
+}
+
+
+/* MENU Navigation bar */
+nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 80px;
+}
+
+.navbar-nav {
+    list-style: none;
+}
+
+.navbar-nav li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.navbar-nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logo a {
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.burger {
+    display: none;
+}
+
+.line {
+	height: 3px;
+	background-color: #000;
+	display: block;
+	margin: auto;
+	margin-block: 2px;
+	width: 20px;
+}
+
+/* MENU Navigation bar - Animation du menu burger */
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* MENU Navigation bar - Ajouter une toile de fond au menu mobile lorsqu’il est actif.  */
+.menu-backdrop {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9; /* Ensure it's below the nav-links but above other content */
+}
+
+.fixed-position {
+    overflow: hidden;
+    height: 100%;
+}
+
+
+/* MENU Navigation bar - Responsive */
+@media screen and (max-width: 768px) {
+    nav{
+		justify-content: space-around;
+	}
+	
+	.navbar-nav {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        top: 80px;
+        background-color: var(--rouge-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+		justify-content: center;
+		padding-bottom:80px;
+		gap:40px;
+        width: 100%;
+        transform: translateX(-770px);
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .navbar-nav li {
+        opacity: 0;
+    }
+
+	.navbar-nav li a {
+		color:white;
+		font-size: 44px;
+	}
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .burger div {
+        width: 25px;
+        height: 3px;
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-active {
+        transform: translateX(0);
+    }
+
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .navbar-nav li {
+        animation: navLinkFade 0.5s ease forwards 0.5s;
+    }
+
+	.line-top-footer{
+		border-top:0;
+	}
+
+}
