@@ -24,6 +24,10 @@ Version: 1.0
 	src: url('../fonts/SpaceMono/SpaceMono-Regular.woff2');
   }
 @font-face {
+	font-family: 'Space Mono Bold';
+	src: url('../fonts/SpaceMono/SpaceMono-Bold.woff2');
+  }
+@font-face {
 	font-family: 'Poppins';
 	src: url('../fonts/Poppins/Poppins-Regular.woff2');
 }
@@ -44,7 +48,15 @@ footer {
 	align-items: center;
 	justify-content: center;
 	gap:40px;
-	font-size: 16px;
+	font-size: 18px;
+}
+
+footer ul {
+	list-style-type: none;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	gap:40px;
 }
 
 footer a {
@@ -90,6 +102,7 @@ header li a{
 	text-align: center;
 	color: white;
 	margin-bottom: 50px;
+	z-index: -1;
 }
 
 .hero-header img {
@@ -98,17 +111,21 @@ header li a{
 	object-fit: cover;
 }
 
-.hero-header span img {
+.hero-header h1 {
 	position: absolute;
-	top: 50%;
+	top: 42%;
 	left: 50%;
+	width: 100%;
 	transform: translate(-50%, -50%);
-	width: 1000px;
-	height: 142px;
+	font-family: "Space Mono Bold";
+	font-style: italic;
+	font-size: 104px;
+	-webkit-text-stroke: 0.02em  white;
+	-webkit-text-fill-color: transparent;
 }
 
 /* Page Accueil - Conteneur filtre + photos */
-.home-container {
+.page-container {
 	width: 1148px;
 	margin: auto;
 	margin-bottom: 30px;
@@ -172,6 +189,138 @@ header li a{
 
 .home-photos img {
 	width: 564px;
+	height: 495px;
+	object-fit: cover;
+}
+
+/* Page single-photos - blocs haut de page */
+.post-single {
+	display : flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/* Page single-photos - bloc image haut */
+.post-photo{ 
+	width: 50%;
+}
+.post-photo img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/* Page single-photos - bloc infos haut */
+.post-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 50%;
+	border-bottom: 1px solid black;
+	padding-bottom: 30px;
+	text-transform: uppercase;
+}
+
+/* Page single-photos - bloc infos haut - Titre */
+.post-info h1 {
+	font-family: "Space Mono";
+	font-style: italic;
+	font-size: 80px;
+	font-weight: 300;
+	line-height: 80px;
+	width: 420px;
+	margin-bottom: 20px;
+}
+
+/* Page single-photos - disposition des blocs en dessous de la photo active */
+.bloc-dessous {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid black;
+}
+
+/* Page single-photos - bloc lien contact */
+.lien-contact {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	height: 118px;
+	width: 50%;
+}
+
+.lien-contact p{
+	font-size: 14px;
+}
+
+.lien-contact button {
+	width: 272px;
+	height: 50px;
+	background-color: var(--gris-medium-color);
+	font-family: "Space Mono";
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+}
+
+/* Page single-photos - bloc lien navigation */
+.lien-navigation {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-evenly;
+	position: relative;
+	height: 118px;
+	width: 50%;
+}
+.lien-navigation img {
+	width: 81px;
+	height: 71px;
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+}
+
+#img-2 {
+	opacity: 1;
+}
+#img-1, #img-3 {
+	opacity: 0;
+}
+
+.fleche {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 55px;
+	position: absolute;
+	bottom: 15px;
+	right: 25px;
+}
+
+.fleche img {
+	width: 25px;
+	height: 8px;
+	object-fit: cover;
+}
+
+/* Page single-photos - zone de photos apparentées */
+.photos-liste-title {
+	font-family: "Space Mono";
+	font-size: 22px;
+	margin-top: 60px;
+}
+
+.photos-cards {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 30px;
+	grid-auto-rows: minmax(100px, auto);
+	margin-top: 40px;
+	margin-bottom: 80px;
+}
+
+.photos-cards img{
+	width: 100%;
 	height: 495px;
 	object-fit: cover;
 }
@@ -246,12 +395,20 @@ header li a{
 	height: 40px;
 	border:solid 1px var(--gris-fonce-color);
 	border-radius: 10px;
+	padding: 0 5px;
+	font-family: "Poppins";
+	font-size: 12px;
+	color: var(--bleu-fonce-color);
 }
 
 .wpcf7-form-control-wrap textarea {
 	height: 210px;
 	border:solid 1px var(--gris-fonce-color);
 	border-radius: 10px;
+	padding: 5px 5px;
+	font-family: "Poppins";
+	font-size: 12px;
+	color: var(--bleu-fonce-color);
 }
 
 .wpcf7-submit {
@@ -272,10 +429,14 @@ header li a{
 	margin-top: -20px !important;
 }
 
+#reference {
+	text-transform: uppercase;
+}
 
 
 
-/* Responsive Design - Largeur Header, Container, Footer*/
+
+/* Responsive Design - Largeur Header, Container, Footer */
 @media screen and (max-width:1148px){
 	header {
 		width: 100%;
@@ -285,6 +446,18 @@ header li a{
 	}
 	.container {
 		width: 100%;
+	}
+}
+
+/* Responsive Design - Footer */
+@media screen and (max-width: 768px) {
+	footer ul {
+		flex-direction: column;
+		align-items: center;
+	}
+	footer {
+		flex-direction: column;
+		gap:0px;
 	}
 }
 
@@ -373,7 +546,7 @@ nav {
         position: absolute;
         right: 0;
         height: 100%;
-        top: 80px;
+        top: 120px;
         background-color: var(--rouge-color);
         display: flex;
         flex-direction: column;

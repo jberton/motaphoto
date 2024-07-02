@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 <div class="main page">
-<h1>page.php</h1>
 	<?php if (have_posts()) : ?>
 		<?php while (have_posts()) : the_post(); ?>
 			<div class="post">

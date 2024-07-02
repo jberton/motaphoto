@@ -1,7 +1,16 @@
 <div class=line-top-footer></div>
 		<footer>
-			<a href="">MENTIONS LEGALES</a>
-			<a href="">VIE PRIVÉE</a>
+			<!-- menu footer -->
+			<?php
+				$defaults = array(
+				'theme_location' => 'footer-menu', 
+				'container' => '', 
+				'menu_class' => 'my-footer-menu', 
+				'menu' => 'footer'
+				);
+				wp_nav_menu($defaults);
+
+			?>
 			<p>TOUS DROITS RÉSERVÉS</p>
 		</footer>
 		<?php wp_footer(); ?>

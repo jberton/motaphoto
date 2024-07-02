@@ -4,11 +4,11 @@
     <!-- Hero header page d'accueil -->
     <div class="hero-header">
         <img src="<?= get_stylesheet_directory_uri() . "/assets/images/nathalie-11.jpeg" ?>" alt="Photographe Event Nathalie Mota">
-        <span><img src="<?= get_stylesheet_directory_uri() . "/assets/images/Titre header.png" ?>" alt="Photographe Event Titre"></span>
+        <h1>PHOTOGRAPHE EVENT</h1>
     </div>
 
     <!-- Contenu de la page d'accueil -->
-    <div class="home-container">
+    <div class="page-container">
 
         <!-- Zone de filtres -->
         <div class="home-filter">
@@ -42,12 +42,11 @@
             <!-- Exécuter la WP Query avec les arguments pour définir ce qu'on récupère -->
             <?php $fiche = new WP_Query(array(
             'post_type' => 'photos', // Custom Post type
-            'posts_per_page' => 8, // Nombre de photos par page
+            'posts_per_page' => 30, // Nombre de photos par page
             'order' => 'DESC', // Ordre ASCendant ou DESCendant
             'orderby' => 'date' // Ordre par date
             ));?>
 
-            
             <!-- Lancer la boucle pour afficher le contenu -->
             <?php if($fiche->have_posts()) : ?>
                 <ul>

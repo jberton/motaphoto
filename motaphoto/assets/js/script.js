@@ -45,6 +45,51 @@ burger.addEventListener('click', () => {
 });
 
 
+(function($){
+    $(document).ready(function() {
+        $("button").click(function(){
+            // Récupérer la référence de la photo
+            var divContent = $('#ref-photo').text();
+            
+            // Ajouter une class pour afficher popup
+            let popup = document.getElementById('popup-contact');
+            popup.classList.add("popup-overlay-visible");
 
+            // Insérer la valeur de la référence dans le forùmulaire de contact
+            document.getElementById("reference").value = divContent;
+            
+          });
+    });
+})(jQuery);
 
-
+// Changer opacité des images au survol sur les liens de navigation
+function changeleft() {
+    var l = document.getElementById("img-1");
+    var m = document.getElementById("img-2");
+    var d = document.getElementById("img-3");
+    l.style.transition = 'opacity 1s';
+    l.style.opacity = 1;
+    m.style.transition = 'opacity 1s';
+    m.style.opacity = 0;
+    d.style.transition = 'opacity 1s';
+    d.style.opacity = 0;
+}
+function changeright() {
+    var l = document.getElementById("img-1");
+    var m = document.getElementById("img-2");
+    var d = document.getElementById("img-3");
+    l.style.transition = 'opacity 1s';
+    l.style.opacity = 0;
+    m.style.transition = 'opacity 1s';
+    m.style.opacity = 0;
+    d.style.transition = 'opacity 1s';
+    d.style.opacity = 1;
+}
+function changeBack() {
+    var l = document.getElementById("img-1");
+    var m = document.getElementById("img-2");
+    var d = document.getElementById("img-3");
+    l.style.opacity = 0;
+    m.style.opacity = 1;
+    d.style.opacity = 0;
+}

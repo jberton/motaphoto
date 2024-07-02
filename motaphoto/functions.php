@@ -21,24 +21,17 @@ add_action('wp_enqueue_scripts', 'theme_scripts');
 // Supprimer les balises p rajoutées par Contact Form7
 add_filter('wpcf7_autop_or_not', '__return_false');
 
-// Ajouter colonnes dans CPT Photos
-function bbx_columns( $column ) {
-	$column['fichier'] = 'Fichier photo';
-	$column['categorie'] = 'Catégorie';
-	$column['format'] = 'Format';
-	return $column;
-}
-add_filter( 'manage_photos_posts_columns', 'bbx_columns' );
+// Ajouter au thème l'image mise en avant
+add_theme_support( 'post-thumbnails' );
 
-// Ajouter le contenu des colonnes ajoutées au CPT Photos
-function custom_photos_column($column, $post_id) {
-    if ( $column == 'categorie' ) {
-		$categories = get_the_category($postId);
-		foreach($categories as $category){
-			echo '<a href="' . get_category_link($category) . '">' . $category->cat_name . '</a>';
-		}
-	}
-}
-add_action('manage_photos_posts_custom_column', 'custom_photos_column',10,2);
-
-?>
+//ajouter une nouvelle zone de menu à mon thème
+// s'il y a plusieurs menus à rajouter, voici le code :
+function register_my_menus() {
+    register_nav_menus(
+    array(
+    'main-menu' => __( 'Menu Principal' ),
+    'footer-menu' => __( 'Menu Footer' ),
+    )
+    );
+   }
+   add_action( 'init', 'register_my_menus' );
