@@ -1,32 +1,22 @@
-<!-- Exécuter la WP Query avec les arguments pour définir ce qu'on récupère -->
-<?php 
-
-// Récupérer les variables (catégorie et post id) passées dans get_template_part
-$categ = $args['categorie'];
-$idpost = $args['postid'];
-
-$listephoto = new WP_Query(array(
-    'post_type' => 'photos', // Custom Post type
-    'posts_per_page' => 2, // Nombre de photos par page
-    'order' => 'DESC', // Ordre ASCendant ou DESCendant
-    'orderby' => 'date', // Ordre par date
-    'post__not_in' => array($idpost), // Exclure la photo principale pour éviter doublon
-    'tax_query' => array(
-        array (
-            'taxonomy' => 'categorie',
-            'field' => 'slug',
-            'terms' => $categ, // Utiliser la catégorie de la photo principale
-        )
-        ), 
-));
-?>
-
-<?php if($listephoto->have_posts()) : ?>
-    <div class="photos-cards">
-        <?php while($listephoto->have_posts()) : $listephoto->the_post(); ?>
-            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-                <img src="<?php the_field('fichier'); ?>"/>
-            </a>
-        <?php endwhile; ?>
+<div class="overlay-image">
+    <img class="photo-card" src="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>" alt="<?php the_title(); ?>" />
+    <div class="hover">
+        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+            <img class="icone-oeil" src="<?= get_stylesheet_directory_uri() . "/assets/images/Icon_eye.png" ?>">
+        </a>
+        <a href="" title="Agrandir la photo">
+            <img class="icone-fullscreen" src="<?= get_stylesheet_directory_uri() . "/assets/images/Icon_fullscreen.png" ?>">
+        </a>
+        <p class="txt-ref">
+            <?php the_field('reference'); ?>
+        </p>
+        <p class="txt-categ">
+            <?php
+            $categ = get_the_terms( get_the_ID(), 'categorie' );
+            $categ = join(', ', wp_list_pluck( $categ , 'name') );
+            echo $categ;
+            ?>
+        </p>
     </div>
-<?php endif; ?>
+
+</div>

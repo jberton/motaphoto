@@ -36,8 +36,8 @@ body {
 	font-family: "Space Mono";
 	margin:0;
 	padding:0;
+	height: 100%;
 }
-
 
 /* Footer */
 footer {
@@ -124,90 +124,136 @@ header li a{
 	-webkit-text-fill-color: transparent;
 }
 
-/* Page Accueil - Conteneur filtre + photos */
+
+
+
+/* Page Accueil - Conteneur filtres + photos */
 .page-container {
 	width: 1148px;
 	margin: auto;
 	margin-bottom: 30px;
 }
 
-/* Page Accueil - Zone de filtre */
-.home-filter {
+/* Page Accueil - Disposition des menus déroulants */
+.filters-container {
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 	margin-bottom: 30px;
 }
 
-.home-filter select {
-	font-size: 12px;
-	font-family: "Poppins";
+.menu-deroulant {
 	width: 260px;
-	border-radius: 10px;
-	border-color: var(--gris-fonce-color);
-	padding: 12px 15px;
-	-webkit-appearance: none;
-	appearance: none;
-  }
-
-  #format-select {
-	position: absolute;
-	right: 10px;
-  }
-
-  .select-wrapper-format::after {
-	right: 30px !important;
-  }
-
-/* Page Accueil - Zone de filtre - Flèche menu déroulant */
-  .select-wrapper {
-	position: relative;
-  }
-  
-  .select-wrapper::after {
-	content: url(../images/icon-fleche.png);
-	font-size: 1rem;
-	top: 6px;
-	right: 20px;
-	position: absolute;
-	pointer-events: none;
-  }
-
-/* Page Accueil - Catalogue photos */
-.home-photos ul {
-	margin:0;
-	padding: 0;
-	list-style-type: none;
-	columns: 2;
-	-webkit-columns: 2;
-	-moz-columns: 2;
-  }
-
-  .home-photos li {
-	margin: 8px 0;
-	float: left;
-  }
-
-.home-photos img {
-	width: 564px;
-	height: 495px;
-	object-fit: cover;
 }
+
+.menu-deroulant button {
+	width: 260px;
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid var(--gris-fonce-color);
+	border-radius: 10px;
+	height: 43px;
+	padding: 20px;
+}
+
+.menu-deroulant a {
+	cursor: pointer;
+}
+
+/* Page Accueil - Zone de filtre - Menu déroulant ul li */
+li {
+	list-style: none !important;
+	color: black;
+	padding: 10px;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.menu-deroulant ul {
+	padding: 0;
+	margin: 0;
+}
+
+.menu-deroulant ul li{
+	line-height: 40px;
+	font-size: 14px;
+	font-family: "Poppins";
+}
+
+.menu-deroulant ul a{
+	text-decoration: none;
+}
+
+.menu-deroulant li:hover {
+	background-color:var(--rouge-color);
+	color: white;
+	}
+
+.menu-deroulant ul { 
+	display:none; /* Par défaut cacher le menu déroulant */
+}
+
+.menu-deroulant .visible { 
+	display:block; /* Afficher le menu déroulant */
+}
+
+.menu-deroulant .hide { 
+	display:none; /* Cacher le menu déroulant */
+}
+
+.flechehaut {
+	transform: rotate(180deg);
+  }
+
+/* Page Accueil - position du button Charger plus */
+.js-load-photos {
+	display: block;
+	margin: auto;
+}
+
+/* Page Accueil + single-photos - Mise en forme du button */
+.js-load-photos, .lien-contact button{
+	width: 272px;
+	height: 50px;
+	background-color: var(--gris-medium-color);
+	font-family: "Space Mono";
+	font-size: 14px;
+	font-weight: 400;
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s linear;
+}
+
+.js-load-photos:hover, .lien-contact button:hover {
+	background-color: black;
+	color: white;
+	font-weight: 700;
+	transition: all 0.2s linear;
+}
+
 
 /* Page single-photos - blocs haut de page */
 .post-single {
 	display : flex;
 	flex-direction: row;
 	justify-content: space-between;
+	min-height: 480px;
+	height: calc(100vh - 200px);
 }
 
 /* Page single-photos - bloc image haut */
 .post-photo{ 
-	width: 50%;
+	float: right;
+	max-width: 50%;
 }
 .post-photo img{
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
+	object-position: bottom;
 }
 /* Page single-photos - bloc infos haut */
 .post-info {
@@ -216,7 +262,7 @@ header li a{
 	justify-content: flex-end;
 	width: 50%;
 	border-bottom: 1px solid black;
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 	text-transform: uppercase;
 }
 
@@ -224,11 +270,12 @@ header li a{
 .post-info h1 {
 	font-family: "Space Mono";
 	font-style: italic;
-	font-size: 80px;
+	font-size: 70px;
 	font-weight: 300;
 	line-height: 80px;
-	width: 420px;
+	width: 100%;
 	margin-bottom: 20px;
+	word-spacing: -20px;
 }
 
 /* Page single-photos - disposition des blocs en dessous de la photo active */
@@ -236,6 +283,7 @@ header li a{
 	display: flex;
 	flex-direction: row;
 	border-bottom: 1px solid black;
+	height: 118px;
 }
 
 /* Page single-photos - bloc lien contact */
@@ -244,22 +292,11 @@ header li a{
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	height: 118px;
 	width: 50%;
 }
 
 .lien-contact p{
 	font-size: 14px;
-}
-
-.lien-contact button {
-	width: 272px;
-	height: 50px;
-	background-color: var(--gris-medium-color);
-	font-family: "Space Mono";
-	font-size: 14px;
-	border: none;
-	cursor: pointer;
 }
 
 /* Page single-photos - bloc lien navigation */
@@ -269,7 +306,6 @@ header li a{
 	align-items: flex-end;
 	justify-content: space-evenly;
 	position: relative;
-	height: 118px;
 	width: 50%;
 }
 .lien-navigation img {
@@ -303,7 +339,7 @@ header li a{
 	object-fit: cover;
 }
 
-/* Page single-photos - zone de photos apparentées */
+/* Template Photo_block */
 .photos-liste-title {
 	font-family: "Space Mono";
 	font-size: 22px;
@@ -316,14 +352,110 @@ header li a{
 	gap: 30px;
 	grid-auto-rows: minmax(100px, auto);
 	margin-top: 40px;
-	margin-bottom: 80px;
+	margin-bottom: 40px;
 }
 
-.photos-cards img{
+.photo-card {
 	width: 100%;
 	height: 495px;
 	object-fit: cover;
+	background:#000000;
+	display:inline-block;
 }
+
+.icone-oeil{
+	width: 46px;
+	height: 32px;
+}
+
+.icone-fullscreen{
+	width: 34px;
+	height: 34px;
+}
+
+/* Template Photo_block - Superposition icones + textes sur une photo */
+
+/* Conteneur overlay */
+.overlay-image {
+	position: relative;
+	width: 100%;
+   }
+   
+   /* Position photo */
+   .overlay-image .photo-card {
+	display: block;
+	width: 100%;
+	height: 495px;
+   }
+   
+   /* Position icone oeil */
+   	.hover .icone-oeil {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+   	}
+
+	/* Position icone Fullscreen */
+	.hover .icone-fullscreen {
+	position: absolute;
+	top: 2%;
+	right: 2%;
+	}
+
+	/* Position texte référence */
+	.hover .txt-ref {
+	position: absolute;
+	bottom: 0;
+	left: 4%;
+	font-family: "Poppins";
+	font-size: 14px;
+	color: #fff;
+	text-transform: uppercase;
+	}
+
+	/* Position texte référence */
+	.hover .txt-categ {
+	position: absolute;
+	bottom: 0;
+	right: 4%;
+	font-family: "Poppins";
+	font-size: 14px;
+	color: #fff;
+	text-transform: uppercase;
+	}
+
+
+/* Template Photo_block - Hover image et texte sur une photo */
+
+/* Overlay */
+.overlay-image .hover {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+}
+   
+/* Apparition overlay sur passage souris */
+.overlay-image:hover .hover {
+	opacity: 1;
+}
+
+/* Template Photo_block - Hover background */
+
+.overlay-image {
+	transition: 1s ease;
+   }
+
+.overlay-image .hover {
+	background-color: rgba(0,0,0,0.5);
+   }
+
+
+
+
 
 /* Formulaire de contact */
 .popup-overlay{
@@ -435,33 +567,6 @@ header li a{
 
 
 
-
-/* Responsive Design - Largeur Header, Container, Footer */
-@media screen and (max-width:1148px){
-	header {
-		width: 100%;
-	}
-	footer {
-		width: 100%;
-	}
-	.container {
-		width: 100%;
-	}
-}
-
-/* Responsive Design - Footer */
-@media screen and (max-width: 768px) {
-	footer ul {
-		flex-direction: column;
-		align-items: center;
-	}
-	footer {
-		flex-direction: column;
-		gap:0px;
-	}
-}
-
-
 /* MENU Navigation bar */
 nav {
 	display: flex;
@@ -546,7 +651,7 @@ nav {
         position: absolute;
         right: 0;
         height: 100%;
-        top: 120px;
+        top: 80px;
         background-color: var(--rouge-color);
         display: flex;
         flex-direction: column;
@@ -557,6 +662,7 @@ nav {
         width: 100%;
         transform: translateX(-770px);
         transition: transform 0.5s ease-in-out;
+		z-index: 1;
     }
 
     .navbar-nav li {
@@ -602,3 +708,126 @@ nav {
 	}
 
 }
+
+/* Responsive Design - largeur de bloc header conteneur principal */
+@media screen and (max-width:1148px){
+	header {
+		width: 100%;
+	}
+	#navbar {
+		justify-content: space-around;
+	}
+	.page-container {
+		width: 90%;
+	}
+	footer {
+		width: 100%;
+	}
+}
+
+/* Responsive Design - Footer */
+@media screen and (max-width: 768px) {
+	footer ul {
+		flex-direction: column;
+		align-items: center;
+	}
+	footer {
+		flex-direction: column;
+		gap:0px;
+	}
+}
+
+/* Responsive Design - Page d'accueil */
+@media screen and (max-width: 768px) {
+	/* Page Accueil - Disposition des menus déroulants */
+	.filters-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
+
+	/* Page Accueil - Dimension image du hero header */
+	.hero-header img {
+		width: 100%;
+		height: 253px;
+		object-fit: cover;
+	}
+
+	/* Page Accueil - Taille titre du hero header */
+	.hero-header h1 {
+		font-size: 35px;
+	}
+}
+
+
+
+
+/* Responsive Design - Single Page */
+@media screen and (max-width: 768px) {
+	.post-single {
+		flex-direction: column-reverse;
+		align-items: center;
+		margin-top: 40px;
+		min-height: auto;
+		height: auto;
+	}
+
+	.bloc-dessous{
+		flex-direction: column;
+		align-items: center;
+		height: 150px;
+	}
+
+	.lien-contact{
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
+		margin-bottom: 40px;
+	}
+
+	.lien-contact p {
+		width: 100%;
+		text-align: center;
+	}
+
+	.lien-navigation {
+		display: none;
+	}
+
+	.photos-liste-title {
+		text-align: center;
+	}
+
+	.photos-cards {
+		grid-template-columns : repeat(1, 1fr);
+	}
+
+	.post-info {
+		width: 80%;
+		border-bottom: none;
+	}
+
+	.post-info h1 {
+		width: 100%;
+		font-size: 50px;
+	}
+
+	.post-photo {
+		width: 80%;
+	}
+
+	.bloc-dessous {
+		border-top : 1px solid black;
+	}
+
+
+}
+
+@media screen and (max-width:500px){
+	.bloc-dessous{
+		height: 200px;
+	}
+}
+
+
