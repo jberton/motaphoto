@@ -52,6 +52,10 @@
                 $('.js-load-photos')[0].setAttribute('data-currentpage', nextpage); // Passer la variable current page
                 $('.home-photos').html(body.data); // Et afficher le HTML
                 
+                // Recharger le fichier JS pour enregistrer les évènements
+                var url = window.location.href;
+                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
+                
             });
         });
         
@@ -111,6 +115,10 @@
             }
 
             $('.home-photos').html(body.data); // Et afficher le HTML
+
+            // Recharger le fichier JS pour enregistrer les évènements
+            var url = window.location.href;
+            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
         });
   });
 
@@ -164,6 +172,10 @@
   
               // Et en cas de réussite
               $('.home-photos').html(body.data); // Et afficher le HTML
+
+            // Recharger le fichier JS pour enregistrer les évènements
+            var url = window.location.href;
+            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
           });
     });
   
@@ -216,6 +228,10 @@
   
               // Et en cas de réussite
               $('.home-photos').html(body.data); // Et afficher le HTML
+
+            // Recharger le fichier JS pour enregistrer les évènements
+            var url = window.location.href;
+            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
           });
     });
   

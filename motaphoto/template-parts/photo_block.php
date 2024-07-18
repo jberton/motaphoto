@@ -4,7 +4,7 @@
         <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
             <img class="icone-oeil" src="<?= get_stylesheet_directory_uri() . "/assets/images/Icon_eye.png" ?>">
         </a>
-        <a href="" title="Agrandir la photo">
+        <a href="<?php echo get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>" class="js-load-lightbox" title="Agrandir la photo">
             <img class="icone-fullscreen" src="<?= get_stylesheet_directory_uri() . "/assets/images/Icon_fullscreen.png" ?>">
         </a>
         <p class="txt-ref">

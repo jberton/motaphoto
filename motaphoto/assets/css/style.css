@@ -566,6 +566,157 @@ li {
 }
 
 
+/* Lightbox - conteneur global avec couleur de fond opaque*/
+.lightbox{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 10;
+	overflow: auto;
+	animation: lightboxin .5s;
+	transition: opacity .3s; /* Animation fermeture */
+}
+
+/* Lightbox - class ajoutée en js pour la fermeture */
+.lightbox.fadeOut{
+	opacity:0;
+}
+
+/* Lightbox - loader (svg en attente chargement image) */
+.lightbox__loader{
+	width: 38px;
+	height: 38px;
+	opacity: .5;
+	background: url(../images/loader.svg) center center no-repeat;
+}
+
+/* Lightbox - conteneur avec image */
+.lightbox__container {
+	margin-left: 220px;
+	margin-right: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	position:relative;
+	width: 60%;
+	margin: auto;
+  }
+
+  .lightbox__container img {
+	max-width: 100%;
+	height: auto;
+	max-height: 600px;
+	animation: lightboxin .5s;
+  }
+
+  /* Lightbox - fleche droite */
+.lightbox__next{
+	border: none;
+	color:white;
+	background-image: url(../images/lightbox-next.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color : transparent;
+	width: 25px;
+	height: 17px;
+	position: fixed;
+	top: 50%;
+	right: 10%;
+	margin-top: -9px;
+	z-index: 11;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.lightbox__next span {
+	margin-right:30px;
+	font-family: "Space Mono";
+	font-size: 12px;
+}
+
+  /* Lightbox - fleche gauche */
+  .lightbox__prev{
+	border: none;
+	color:white;
+	background-image: url(../images/lightbox-prev.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-color : transparent;
+	width: 25px;
+	height: 17px;
+	position: fixed;
+	top: 50%;
+	left: 10%;
+	margin-top: -9px;
+	z-index: 11;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.lightbox__prev span {
+	margin-left:30px;
+	font-family: "Space Mono";
+	font-size: 12px;
+}
+
+  /* Lightbox - bouton fermer */
+  .lightbox__close{
+	border: none;
+	background-image: url(../images/fermer-lightbox.png);
+	background-color : transparent;
+	background-size: cover;
+	width: 22px;
+	height: 22px;
+	position: fixed;
+	text-indent: -3000px;
+	cursor: pointer;
+	top: 50px;
+	right: 10%;
+	z-index: 12;
+  }
+
+/* Lightbox - référence de la photo */
+.lightbox__ref{
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	z-index: 12;
+	color:white;
+	font-family: 'Poppins';
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+/* Lightbox - catégorie de la photo */
+.lightbox__categ{
+	position: absolute;
+	bottom: 20px;
+	right: 0;
+	z-index: 12;
+	color:white;
+	font-family: 'Poppins';
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+/* Lightbox - animation */
+@keyframes lightboxin {
+	from {opacity:0;}
+	to {opacity:1;}
+}
+
+
+
+
+
+
+
 
 /* MENU Navigation bar */
 nav {

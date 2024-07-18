@@ -9,10 +9,10 @@ add_action( 'wp_enqueue_scripts', 'load_css' );
 // Chargement du Javascript
 function load_javascript(){
     wp_enqueue_script( "custom-js", get_stylesheet_directory_uri() . "/assets/js/script.js", array(), false, true );
+    wp_enqueue_script( "lightbox", get_stylesheet_directory_uri() . "/assets/js/lightbox.js", [ 'jquery' ], '1.0', false);
     wp_enqueue_script('motaphoto', get_stylesheet_directory_uri() . "/assets/js/ajax.js", [ 'jquery' ], '1.0', true);
 }
-add_action( 'wp_enqueue_scripts', 'load_javascript' );
-
+add_action( 'wp_enqueue_scripts', 'load_javascript');
 
 
 // Activation de JQuery
@@ -44,7 +44,7 @@ function random_photo() {
 
     $args = array(
         'post_type' => 'photos', // Custom Post type
-        'orderby'        => 'rand',
+        'orderby' => 'rand',
         'posts_per_page' => 1,
         );
 

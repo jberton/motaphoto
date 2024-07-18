@@ -12,6 +12,9 @@
 
 			?>
 			<p>TOUS DROITS RÉSERVÉS</p>
+
+			<!-- Lightbox photo -->
+			<?php get_template_part( 'template-parts/lightbox', 'none' );?>
 		</footer>
 		<?php wp_footer(); ?>
 	</body>

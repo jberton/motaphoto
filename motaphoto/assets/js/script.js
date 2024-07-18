@@ -192,8 +192,3 @@ burger.addEventListener('click', () => {
 
     });
 })(jQuery);
-
-
-
-
-
