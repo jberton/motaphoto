@@ -118,20 +118,20 @@ function load_photos() {
         if ($order != undefined && $order != "TRIER PAR") {
             $args = array(
                 'post_type' => 'photos', // Custom Post type
-                'posts_per_page' => $posts_per_page * $currentpage, // Nombre de photos par page
+                'posts_per_page' => $posts_per_page, // Nombre de photos par page
                 'order' => $order, // Ordre ASCendant ou DESCendant
                 'orderby' => 'date', // Ordre par date
-                'paged' => '1',
+                'paged' => $currentpage,
                 );
         }
         else {
         // Si aucun filtre ordre date
             $args = array(
                 'post_type' => 'photos', // Custom Post type
-                'posts_per_page' => $posts_per_page * $currentpage, // Nombre de photos par page
+                'posts_per_page' => $posts_per_page, // Nombre de photos par page
                 'order' => 'DESC', // Ordre ASCendant ou DESCendant
                 'orderby' => 'date', // Ordre par date
-                'paged' => '1',
+                'paged' => $currentpage,
                 );
             }
 
@@ -191,7 +191,13 @@ function load_photos() {
         endif;
         $html = ob_get_clean();
 
+        wp_reset_postdata();
+
   	// Envoyer les données au navigateur
-	wp_send_json_success( $html );
+      $result = [
+        'max' => $max_page,
+        'html' => $html,
+    ];
+    wp_send_json_success( $result );
     
 }

@@ -24,7 +24,6 @@
                 nonce:  $(this).data('nonce'),
                 postid: $(this).data('postid'),
                 currentpage: pageactuelle,
-                maxpage: $(this).data('maxpage'),
                 postcateg: $('#btncat').text(),
                 postformat: $('#btnform').text(),
                 postorder: $('#btntri').text(),
@@ -55,9 +54,9 @@
 
                 // Et en cas de réussite
                     // Afficher le HTML
-                    $('.home-photos').html(body.data);
+                    $('.home-photos').append(body.data.html);
                     // Cacher le button si aucune photo supplémentaire à afficher
-                    if((data.currentpage) === data.maxpage){
+                    if((data.currentpage) === body.data.max){
                         $(this).hide(); 
                     }
                 
@@ -78,6 +77,9 @@
      
     // Lancer le sript après le choix d'une catégorie
     $("#menu-class-1 li").on('click', function(e) {
+
+        // Initialiser la pagination
+        pageactuelle = 1;
 
         // Annuler l'action
         e.preventDefault();
@@ -120,13 +122,15 @@
                 return;
             }
 
-            // Et en cas de réussite
-                // Afficher le HTML
-                $('.home-photos').html(body.data);
-                // Cacher le button si aucune photo supplémentaire à afficher
-                if((data.currentpage) === data.maxpage){
-                    $(this).hide(); 
-                }
+                // Et en cas de réussite
+                    // Afficher le HTML
+                    $('.home-photos').html(body.data.html);
+                    // Cacher le button si aucune photo supplémentaire à afficher
+                    if((data.currentpage) === body.data.max){
+                        $('.js-load-photos').hide(); 
+                    }else {
+                        $('.js-load-photos').show(); 
+                    }
 
             // Recharger le fichier JS pour enregistrer les évènements
             var url = window.location.href;
@@ -144,6 +148,9 @@
         
         // Lancer le sript après le choix d'un format
         $("#menu-class-2 li").on('click', function() {
+
+        // Initialiser la pagination
+        pageactuelle = 1;
           
           // L'URL qui réceptionne les requêtes Ajax dans l'attribut "action" de <button>
           const ajaxurl = $(this).data('ajaxurl');
@@ -183,8 +190,15 @@
                   return;
               }
   
-              // Et en cas de réussite
-              $('.home-photos').html(body.data); // Et afficher le HTML
+                // Et en cas de réussite
+                    // Afficher le HTML
+                    $('.home-photos').html(body.data.html);
+                    // Cacher le button si aucune photo supplémentaire à afficher
+                    if((data.currentpage) === body.data.max){
+                        $('.js-load-photos').hide(); 
+                    }else {
+                        $('.js-load-photos').show(); 
+                    }
 
             // Recharger le fichier JS pour enregistrer les évènements
             var url = window.location.href;
@@ -201,6 +215,9 @@
         
         // Lancer le sript après le choix d'un tri par date
         $("#menu-class-3 li").on('click', function() {
+
+        // Initialiser la pagination
+        pageactuelle = 1;
           
           // L'URL qui réceptionne les requêtes Ajax dans l'attribut "action" de <button>
           const ajaxurl = $(this).data('ajaxurl');
@@ -240,8 +257,15 @@
                   return;
               }
   
-              // Et en cas de réussite
-              $('.home-photos').html(body.data); // Et afficher le HTML
+                // Et en cas de réussite
+                    // Afficher le HTML
+                    $('.home-photos').html(body.data.html);
+                    // Cacher le button si aucune photo supplémentaire à afficher
+                    if((data.currentpage) === body.data.max){
+                        $('.js-load-photos').hide(); 
+                    }else {
+                        $('.js-load-photos').show(); 
+                    }
 
             // Recharger le fichier JS pour enregistrer les évènements
             var url = window.location.href;

@@ -60,11 +60,19 @@ class lightbox {
                 container.removeChild(loader);
                 container.appendChild(image);
 
+                // créer le html de la référence et catégorie
+                const infos = document.createElement('div');
+                infos.classList.add('lightbox__infos');
                 var refHTML = '<p class="lightbox__ref">Référence de la photo</p>';
                 var categHTML = '<p class="lightbox__categ">Catégorie</p>';
-                container.append($(refHTML)[0]);
-                container.append($(categHTML)[0]);
-                
+                container.appendChild(infos);
+                infos.append($(refHTML)[0]);
+                infos.append($(categHTML)[0]);
+
+                // définir la largeur du containeur lightbox__infos en fonction de la taille de l'image
+                var widthimg = $(".lightbox__container img").width();
+                console.log(widthimg);
+                $(".lightbox__infos").css('width', widthimg);
                 this.url = url; // url passée en paramètre lorsque l'image est chargée
             }
             image.src = url;
