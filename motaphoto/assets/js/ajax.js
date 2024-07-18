@@ -1,12 +1,18 @@
 (function ($) {
   $(document).ready(function () {
       console.log('Le script JS a bien été chargé');
+    
+      // Initialiser la pagination
+      pageactuelle = 1;
       
       // Lancer le sript au clic sur Charger plus
       document.querySelector('.js-load-photos').addEventListener('click', function(e) {
 
-            // Empêcher l'envoi classique du formulaire
+            // Annuler l'action du href
             e.preventDefault();
+
+            // Incrémenter la pagination
+            pageactuelle++;
 
             // L'URL qui réceptionne les requêtes Ajax dans l'attribut "action" de <button>
             const ajaxurl = $(this).data('ajaxurl');
@@ -17,7 +23,11 @@
                 action: $(this).data('action'), 
                 nonce:  $(this).data('nonce'),
                 postid: $(this).data('postid'),
-                postcateg: $(this).data("id"),
+                currentpage: pageactuelle,
+                maxpage: $(this).data('maxpage'),
+                postcateg: $('#btncat').text(),
+                postformat: $('#btnform').text(),
+                postorder: $('#btntri').text(),
             }
 
             // Pour vérifier qu'on a bien récupéré les données
@@ -44,15 +54,14 @@
                 }
 
                 // Et en cas de réussite
-                if((data.currentpage)+1 === data.maxpage){
-                    $(this).hide(); // Cacher le button si aucune photo supplémentaire à afficher
-                }
-
-                let nextpage = (data.currentpage)+1;
-                $('.js-load-photos')[0].setAttribute('data-currentpage', nextpage); // Passer la variable current page
-                $('.home-photos').html(body.data); // Et afficher le HTML
+                    // Afficher le HTML
+                    $('.home-photos').html(body.data);
+                    // Cacher le button si aucune photo supplémentaire à afficher
+                    if((data.currentpage) === data.maxpage){
+                        $(this).hide(); 
+                    }
                 
-                // Recharger le fichier JS pour enregistrer les évènements
+                // Recharger le fichier lightbox.js pour enregistrer les évènements
                 var url = window.location.href;
                 $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
                 
@@ -66,11 +75,12 @@
 (function ($) {
   $(document).ready(function () {
       console.log('Le script JS a bien été chargé - Catégorie');
-      
-      // Lancer le sript après le choix d'une catégorie
-      $("#menu-class-1 li").on('click', function() {
-        
-        //alert($(this).data("id"));
+     
+    // Lancer le sript après le choix d'une catégorie
+    $("#menu-class-1 li").on('click', function(e) {
+
+        // Annuler l'action
+        e.preventDefault();
 
         // L'URL qui réceptionne les requêtes Ajax dans l'attribut "action" de <button>
         const ajaxurl = $(this).data('ajaxurl');
@@ -81,6 +91,7 @@
             action: $(this).data('action'), 
             nonce:  $(this).data("nonce"),
             postid: $(this).data('postid'),
+            currentpage: pageactuelle,
             postcateg: $(this).data("id"),
             postformat: $('#btnform').text(),
             postorder: $('#btntri').text(),
@@ -110,11 +121,12 @@
             }
 
             // Et en cas de réussite
-            if((data.currentpage)+1 === data.maxpage){
-                $('.js-load-photos').hide(); // Cacher le button si aucune photo supplémentaire à afficher
-            }
-
-            $('.home-photos').html(body.data); // Et afficher le HTML
+                // Afficher le HTML
+                $('.home-photos').html(body.data);
+                // Cacher le button si aucune photo supplémentaire à afficher
+                if((data.currentpage) === data.maxpage){
+                    $(this).hide(); 
+                }
 
             // Recharger le fichier JS pour enregistrer les évènements
             var url = window.location.href;
@@ -142,6 +154,7 @@
               action: $(this).data('action'), 
               nonce:  $(this).data("nonce"),
               postid: $(this).data('postid'),
+              currentpage: pageactuelle,
               postcateg: $('#btncat').text(),
               postformat: $(this).data("id"),
               postorder: $('#btntri').text(),
@@ -198,6 +211,7 @@
               action: $(this).data('action'), 
               nonce:  $(this).data("nonce"),
               postid: $(this).data('postid'),
+              currentpage: pageactuelle,
               postcateg: $('#btncat').text(),
               postformat: $('#btnform').text(),
               postorder: $(this).data("id"),

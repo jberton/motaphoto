@@ -100,10 +100,9 @@ function load_photos() {
 
         // Définition variables requete charger plus
         $currentpage = intval( $_POST['currentpage'] );
-        $nextpage = $currentpage + 1;
         $posts_per_page = 8;
 
-        // Définition variable requete avec filtre catégorie, format
+        // Définition variable requete avec filtre catégorie, format, ordre de tri
         $categ = sanitize_text_field( $_POST['postcateg'] );
         $format = sanitize_text_field( $_POST['postformat'] );
         $order = sanitize_text_field( $_POST['postorder'] );
@@ -115,24 +114,24 @@ function load_photos() {
             }
 
         // Construction de la requete
-        // Si filtre appliqué : ordre date
+        // Si filtre appliqué : ordre de tri par date
         if ($order != undefined && $order != "TRIER PAR") {
             $args = array(
                 'post_type' => 'photos', // Custom Post type
-                'posts_per_page' => $posts_per_page * $nextpage, // Nombre de photos par page
+                'posts_per_page' => $posts_per_page * $currentpage, // Nombre de photos par page
                 'order' => $order, // Ordre ASCendant ou DESCendant
                 'orderby' => 'date', // Ordre par date
-                'paged' => $currentpage,
+                'paged' => '1',
                 );
         }
         else {
         // Si aucun filtre ordre date
             $args = array(
                 'post_type' => 'photos', // Custom Post type
-                'posts_per_page' => $posts_per_page * $nextpage, // Nombre de photos par page
+                'posts_per_page' => $posts_per_page * $currentpage, // Nombre de photos par page
                 'order' => 'DESC', // Ordre ASCendant ou DESCendant
                 'orderby' => 'date', // Ordre par date
-                'paged' => $currentpage,
+                'paged' => '1',
                 );
             }
 
@@ -178,12 +177,15 @@ function load_photos() {
 
         $wp_query = new WP_Query( $args );
         
+        // Définir le nombre de page maximum
+        $max_page = ($wp_query->max_num_pages);
+        
         // Préparer le HTML des photos
         ob_start();
         if($wp_query->have_posts()) :
             echo '<div class="photos-cards">';
             while($wp_query->have_posts()) : $wp_query->the_post();
-                get_template_part( 'template-parts/photo_block', 'none' );
+                $reponse .= get_template_part( 'template-parts/photo_block', 'none' );
             endwhile;
             echo '</div>';
         endif;
@@ -191,4 +193,5 @@ function load_photos() {
 
   	// Envoyer les données au navigateur
 	wp_send_json_success( $html );
+    
 }

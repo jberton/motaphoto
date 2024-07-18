@@ -142,13 +142,12 @@
         <div class="home-photos">
             <!-- Exécuter la WP Query avec les arguments pour définir ce qu'on récupère -->
             <?php 
-            $paged = 1; 
             $listephoto = new WP_Query(array(
                 'post_type' => 'photos', // Custom Post type
                 'posts_per_page' => 8, // Nombre de photos par page
                 'order' => 'DESC', // Ordre ASCendant ou DESCendant
                 'orderby' => 'date', // Ordre par date
-                'paged' => $paged, // Current page
+                'paged' => '1', // Current page
                 ));
             ?>
                 <?php if($listephoto->have_posts()) : ?>
@@ -158,24 +157,13 @@
                             <?php get_template_part( 'template-parts/photo_block', 'none' );?>
                         <?php endwhile; ?>
                     </div>
-                <?php endif; ?>      
-
-            <!--  Pagination infinie en Ajax  -->
-            <?php
-            global $wp_query;
-                $my_page = (get_query_var('paged')) ? get_query_var('paged') : 1;
-                $max_page = ($listephoto->max_num_pages);
-                //var_dump($my_page); // Current page                      
-                //var_dump($max_page); // Max page
-            ?>
-
+                <?php endif; ?>   
         </div>
 
         <button
                 class="js-load-photos"
                 data-postid="<?php echo get_the_ID(); ?>"
-                data-currentpage= "<?php echo $my_page; ?>"
-                data-maxpage= "<?php echo $max_page ?>"
+                data-maxpage= "<?php echo ($listephoto->max_num_pages) ?>"
                 data-nonce="<?php echo wp_create_nonce('load_photos'); ?>"
                 data-action="load_photos"
                 data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>"
