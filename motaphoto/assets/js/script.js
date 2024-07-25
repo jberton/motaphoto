@@ -98,21 +98,26 @@ burger.addEventListener('click', () => {
             // Menu 1 Catégories - Récupérer la class pour savoir si menu est affiché ou masqué
             let menu1 = document.getElementById("menu-class-1");
             let fleche1 = document.getElementById("menu-f-1");
-        // Menu 2 Formats - Récupérer la class pour savoir si menu est affiché ou masqué
+            let menutop1 = document.getElementById("menu-d-1");
+            // Menu 2 Formats - Récupérer la class pour savoir si menu est affiché ou masqué
             let menu2 = document.getElementById("menu-class-2");
             let fleche2 = document.getElementById("menu-f-2");
-        // Menu 3 Trier par - Récupérer la class pour savoir si menu est affiché ou masqué
+            let menutop2 = document.getElementById("menu-d-2");
+         // Menu 3 Trier par - Récupérer la class pour savoir si menu est affiché ou masqué
             let menu3 = document.getElementById("menu-class-3");
             let fleche3 = document.getElementById("menu-f-3");
+            let menutop3 = document.getElementById("menu-d-3");
 
         $("#menu-d-1").click(function(){
             // Changer la class + pivoter la fleche vers le haut ou vers le bas
             if (menu1.className === "hide") {
                 menu1.classList.replace("hide", "visible");
                 fleche1.classList.replace("flechebas", "flechehaut");
+                menutop1.classList.replace("filtreinactif", "filtreactif");
               } else {
                 menu1.classList.replace("visible", "hide");
                 fleche1.classList.replace("flechehaut", "flechebas");
+                menutop1.classList.replace("filtreactif", "filtreinactif");
               }
         });
           
@@ -121,9 +126,11 @@ burger.addEventListener('click', () => {
             if (menu2.className === "hide") {
                 menu2.classList.replace("hide", "visible");
                 fleche2.classList.replace("flechebas", "flechehaut");
+                menutop2.classList.replace("filtreinactif", "filtreactif");
                 } else {
                 menu2.classList.replace("visible", "hide");
                 fleche2.classList.replace("flechehaut", "flechebas");
+                menutop2.classList.replace("filtreactif", "filtreinactif");
                 }
         });
 
@@ -132,9 +139,11 @@ burger.addEventListener('click', () => {
             if (menu3.className === "hide") {
                 menu3.classList.replace("hide", "visible");
                 fleche3.classList.replace("flechebas", "flechehaut");
+                menutop3.classList.replace("filtreinactif", "filtreactif");
                 } else {
                 menu3.classList.replace("visible", "hide");
                 fleche3.classList.replace("flechehaut", "flechebas");
+                menutop3.classList.replace("filtreactif", "filtreinactif");
                 }
         });
 
@@ -153,6 +162,7 @@ burger.addEventListener('click', () => {
             // Changer la class + pivoter la fleche vers le haut ou vers le bas
             menu1.classList.replace("visible", "hide");
             fleche1.classList.replace("flechehaut", "flechebas");
+            menutop1.classList.replace("filtreactif", "filtreinactif");
         });
 
         // Si clic sur item du menu déroulant Formats
@@ -170,6 +180,7 @@ burger.addEventListener('click', () => {
             // Changer la class + pivoter la fleche vers le haut ou vers le bas
             menu2.classList.replace("visible", "hide");
             fleche2.classList.replace("flechehaut", "flechebas");
+            menutop2.classList.replace("filtreactif", "filtreinactif");
         });
 
         // Si clic sur item du menu déroulant Trier par
@@ -187,6 +198,7 @@ burger.addEventListener('click', () => {
             // Changer la class + pivoter la fleche vers le haut ou vers le bas
             menu3.classList.replace("visible", "hide");
             fleche3.classList.replace("flechehaut", "flechebas");
+            menutop3.classList.replace("filtreactif", "filtreinactif");
         });
 
 

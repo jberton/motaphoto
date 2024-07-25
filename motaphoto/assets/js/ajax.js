@@ -1,7 +1,5 @@
 (function ($) {
   $(document).ready(function () {
-      console.log('Le script JS a bien été chargé');
-    
       // Initialiser la pagination
       pageactuelle = 1;
       
@@ -62,19 +60,13 @@
                 
                 // Recharger le fichier lightbox.js pour enregistrer les évènements
                 var url = window.location.href;
-                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
-                
+                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");  
             });
         });
-        
     });
-})(jQuery);
 
 
-(function ($) {
   $(document).ready(function () {
-      console.log('Le script JS a bien été chargé - Catégorie');
-     
     // Lancer le sript après le choix d'une catégorie
     $("#menu-class-1 li").on('click', function(e) {
 
@@ -132,20 +124,15 @@
                         $('.js-load-photos').show(); 
                     }
 
-            // Recharger le fichier JS pour enregistrer les évènements
-            var url = window.location.href;
-            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
+                // Recharger le fichier JS pour enregistrer les évènements
+                var url = window.location.href;
+                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
+            });
         });
-  });
-
     });
-})(jQuery);
 
 
-(function ($) {
     $(document).ready(function () {
-        console.log('Le script JS a bien été chargé - format');
-        
         // Lancer le sript après le choix d'un format
         $("#menu-class-2 li").on('click', function() {
 
@@ -200,19 +187,15 @@
                         $('.js-load-photos').show(); 
                     }
 
-            // Recharger le fichier JS pour enregistrer les évènements
-            var url = window.location.href;
-            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
-          });
+                // Recharger le fichier JS pour enregistrer les évènements
+                var url = window.location.href;
+                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
+            });
+        });
     });
-  
-      });
-  })(jQuery);
 
-  (function ($) {
+
     $(document).ready(function () {
-        console.log('Le script JS a bien été chargé - date');
-        
         // Lancer le sript après le choix d'un tri par date
         $("#menu-class-3 li").on('click', function() {
 
@@ -267,11 +250,10 @@
                         $('.js-load-photos').show(); 
                     }
 
-            // Recharger le fichier JS pour enregistrer les évènements
-            var url = window.location.href;
-            $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
-          });
+                // Recharger le fichier JS pour enregistrer les évènements
+                var url = window.location.href;
+                $.getScript(url+"wp-content/themes/motaphoto/assets/js/lightbox.js?ver=1.0");
+            });
+        });
     });
-  
-      });
-  })(jQuery);
+})(jQuery);

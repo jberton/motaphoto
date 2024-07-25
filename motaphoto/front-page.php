@@ -43,7 +43,7 @@
             ?>
 
             <div class="menu-deroulant">
-                <button id="menu-d-1"><span id="btncat">CATÉGORIES</span>
+                <button id="menu-d-1" class="filtreinactif" ><span id="btncat">CATÉGORIES</span>
                     <a><img id="menu-f-1" class="flechebas" src="<?= get_stylesheet_directory_uri() . "/assets/images/icon-fleche.png" ?>"></a>
                 </button>
                 <ul id="menu-class-1" class="hide">
@@ -72,7 +72,7 @@
                 </ul>
             </div>
             <div class="menu-deroulant">
-                <button id="menu-d-2"><span id="btnform">FORMATS</span>
+                <button id="menu-d-2" class="filtreinactif"><span id="btnform">FORMATS</span>
                     <a><img id="menu-f-2" class="flechebas" src="<?= get_stylesheet_directory_uri() . "/assets/images/icon-fleche.png" ?>"></a>
                 </button>
                 <ul id="menu-class-2" class="hide">
@@ -101,7 +101,7 @@
                 </ul>
             </div>
             <div class="menu-deroulant">
-                <button id="menu-d-3"><span id="btntri">TRIER PAR</span>
+                <button id="menu-d-3" class="filtreinactif"><span id="btntri">TRIER PAR</span>
                     <a><img id="menu-f-3" class="flechebas" src="<?= get_stylesheet_directory_uri() . "/assets/images/icon-fleche.png" ?>"></a>
                 </button>
                 <ul id="menu-class-3" class="hide">

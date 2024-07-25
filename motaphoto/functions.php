@@ -28,7 +28,6 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 add_theme_support( 'post-thumbnails' );
 
 //ajouter une nouvelle zone de menu à mon thème
-// s'il y a plusieurs menus à rajouter, voici le code :
 function register_my_menus() {
     register_nav_menus(
     array(
@@ -41,15 +40,12 @@ function register_my_menus() {
 
 // Fonction qui affiche une image de façon aléatoire dans le hero page accueil
 function random_photo() {
-
     $args = array(
         'post_type' => 'photos', // Custom Post type
         'orderby' => 'rand',
         'posts_per_page' => 1,
         );
-
     $query = new WP_Query( $args );
-
     if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
@@ -59,12 +55,9 @@ function random_photo() {
     } else {
         $rand_photo .= '<p>Pas de photo à afficher.</p>';
     }
-
     return $rand_photo;
 }
-
 add_shortcode('random-photo','random_photo');
-
 
 
 

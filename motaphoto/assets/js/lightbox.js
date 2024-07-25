@@ -5,23 +5,36 @@
 /**
  * @property {HTMLElement} element
  * @property {string[]} images tableau de chaines de caractères avec les chemins des images de la lightbox
+ * @property {string[]} references tableau de chaines de caractères avec les références des images de la lightbox
+ * @property {string[]} categories tableau de chaines de caractères avec les catégories des images de la lightbox
  * @property {string} url chaine de caractère de l'image actuellement chargée (récupérer la position actuelle pour afficher suivante ou précédente)
+ * @property {string} ref chaine de caractère de la référence pour l'image actuellement chargée
+ * @property {string} categ chaine de caractère de la catégorie pour l'image actuellement chargée
  */
 class lightbox {
     // Méthode pour initialiser la lightbox
     static init(){
-        // Sélectionner tous les liens qui mènent vers des photos        
+        // Sélectionner tous les liens qui mènent vers des photos
             const links = Array.from(document.querySelectorAll(".js-load-lightbox"));
             // Créer une variable pour stocker tous les liens des photos
             const gallery = links.map(link => link.getAttribute('href'));
+        // Sélectionner toutes les références des photos
+            const refs = Array.from(document.querySelectorAll(".txt-ref"));
+            // Créer une variable pour stocker les références
+            const galleryRef = refs.map(ref => ref.innerHTML);
+        // Sélectionner toutes les catégories des photos
+            const categs = Array.from(document.querySelectorAll(".txt-categ"));
+            // Créer une variable pour stocker les références
+            const galleryCateg = categs.map(categ => categ.innerHTML);
+
 
             for (let i = 0; i < links.length; i++) {
                 links[i].addEventListener("click", function(e) {
-                    
                 // Annuler l'action du href
                 e.preventDefault();          
                 // Initialiser une nouvelle lightbox avec l'url du lien cliqué
-                new lightbox(e.currentTarget.getAttribute('href'),gallery);
+                new lightbox(e.currentTarget.getAttribute('href'),gallery,galleryRef[i],galleryRef,galleryCateg[i],galleryCateg);
+
                 });
             }
         }
@@ -29,13 +42,19 @@ class lightbox {
         // Construire la structure html de la lightbox qui prend en paramètre l'url de l'image
         /**
          * @param {string} url url de l'image
+         * @param {string} ref référence de l'image
+         * @param {string} categ catégorie de l'image
          * @param {string[]} images chemins des images de la lightbox
+         * @param {string[]} references références des images de la lightbox
+         * @param {string[]} categories categories des images de la lightbox
          */
-        constructor(url, images){
+        constructor(url, images, ref, references, categ, categories){
             this.element = this.buildDOM(url);
-            this.loadImage(url);
-            // Passer le paramètre images pour pouvoir naviguer dans le tableau des images et afficher la suivante ou précédente
+            this.loadImage(url, ref, categ);
+            // Passer le paramètre images pour pouvoir naviguer dans le tableau des images et afficher la suivante ou précédente + références et catégories
             this.images = images;
+            this.references = references;
+            this.categories = categories;
             this.onKeyUp = this.onKeyUp.bind(this);
             // Intégrer la lightbox dans un template à l'intérieur du footer
             document.getElementById("lightbox").appendChild(this.element);
@@ -46,9 +65,13 @@ class lightbox {
     // Fonction pour charger le loader et afficher l'image une fois chargée
         /**
          * @param {string} url url de l'image
+         * @param {string} ref référence de l'image
+         * @param {string} categ catégorie de l'image
          */
-        loadImage (url) {
+        loadImage (url, ref, categ) {
             this.url = null; // pas d'image chargée
+            this.ref = null; // pas de référence chargée
+            this.categ = null; // pas de catégorie chargée
             const image = new Image();
             const container = this.element.querySelector(".lightbox__container");
             // créer le html du loader
@@ -63,8 +86,8 @@ class lightbox {
                 // créer le html de la référence et catégorie
                 const infos = document.createElement('div');
                 infos.classList.add('lightbox__infos');
-                var refHTML = '<p class="lightbox__ref">Référence de la photo</p>';
-                var categHTML = '<p class="lightbox__categ">Catégorie</p>';
+                var refHTML = '<p class="lightbox__ref">'+ref+'</p>';
+                var categHTML = '<p class="lightbox__categ">'+categ+'</p>';
                 container.appendChild(infos);
                 infos.append($(refHTML)[0]);
                 infos.append($(categHTML)[0]);
@@ -74,8 +97,11 @@ class lightbox {
                 console.log(widthimg);
                 $(".lightbox__infos").css('width', widthimg);
                 this.url = url; // url passée en paramètre lorsque l'image est chargée
+                this.ref = ref; // référence passée en paramètre lorsque l'image est chargée
+                this.categ = categ; // catégorie passée en paramètre lorsque l'image est chargée
             }
             image.src = url;
+
         }
 
         /**
@@ -119,6 +145,7 @@ class lightbox {
             next(e){
                 // empecher le comportement initial
                 e.preventDefault();
+
                 // parcourir le tableau des images et afficher l'image suivante
                     // trouver la position de l'image actuelle pour l'incrémenter
                     let i = this.images.findIndex(image => image === this.url);
@@ -126,7 +153,8 @@ class lightbox {
                     if (i === this.images.length - 1){
                         i = -1; //on revient à la première image
                     }
-                    this.loadImage(this.images[i + 1]);
+                    this.loadImage(this.images[i + 1],this.references[i + 1],this.categories[i + 1]);
+
             }
 
     // Créer la fonction image précédente
@@ -144,7 +172,7 @@ class lightbox {
                     if (i === 0){
                         i = this.images.length; //on va à la dernière image
                     }
-                    this.loadImage(this.images[i - 1]);
+                    this.loadImage(this.images[i - 1],this.references[i - 1],this.categories[i - 1]);
         }
 
         // Construire la structure html de la lightbox qui prend en paramètre l'url de l'image et retrouner du HTML
